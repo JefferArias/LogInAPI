@@ -9,7 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<LogInBDContext>();
+builder.Services.AddDbContext<LogInBDContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("LogIn"));
+});
 
 var app = builder.Build();
 
